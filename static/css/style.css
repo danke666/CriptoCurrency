@@ -1,179 +1,90 @@
-/* Глобальные стили */
-:root {
-  --primary: #6c5ce7;
-  --secondary: #a55eea;
-  --accent: #00cec9;
-  --background: #2d3436;
-  --card-bg: rgba(44, 62, 80, 0.8);
-  --text: #dfe6e9;
-}
-
+/* Обновлённые глобальные стили */
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, var(--background) 0%, #636e72 100%);
-  color: var(--text);
-  min-height: 100vh;
-  padding: 2rem 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 2rem;
-  background: rgba(44, 62, 80, 0.2);
-  backdrop-filter: blur(15px);
-  border-radius: 30px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Заголовки */
 h1, h2 {
-  background: linear-gradient(45deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
+  color: #222;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
-/* Карточки криптовалют */
+/* Стили для карточек криптовалют */
 .crypto-card {
-  background: var(--card-bg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 2rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.crypto-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, transparent, rgba(108, 92, 231, 0.1));
-  opacity: 0;
-  transition: opacity 0.4s;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
 }
 
 .crypto-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-.crypto-card:hover::before {
-  opacity: 1;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .crypto-card h3 {
   font-size: 1.5rem;
-  color: var(--accent);
   margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
 }
 
 .crypto-card p {
-  font-size: 1.25rem;
-  color: var(--text);
+  font-size: 1.1rem;
   margin: 0;
 }
 
-/* Формы */
+/* Стили для формы конвертации */
+#conversion-form {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
 .form-label {
-  color: var(--text);
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
 
-.form-select, .form-control {
-  background: var(--card-bg);
-  color: var(--text);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 1rem;
-  transition: all 0.3s ease;
+.form-control, .form-select {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
-.form-select:focus, .form-control:focus {
-  background: var(--card-bg);
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
-}
-
-/* Кнопка конвертации */
 .convert-btn {
-  background: linear-gradient(45deg, var(--primary), var(--secondary));
-  color: white;
+  background-color: #0069d9;
+  color: #fff;
   border: none;
-  border-radius: 15px;
-  padding: 1rem 2rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
 }
 
 .convert-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
+  background-color: #0053ba;
 }
 
-/* Результат конвертации */
-#conversion-result {
-  font-size: 1.2rem;
-  margin-top: 2rem;
-  padding: 1.5rem;
-  border-radius: 15px;
-  background: var(--card-bg);
-  animation: fadeIn 0.5s ease-out;
-}
-
-/* График */
-canvas {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: var(--card-bg);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Анимации */
-@keyframes fadeIn {
-  from { 
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to { 
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.row > div {
-  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.row > div:nth-child(1) { animation-delay: 0.1s; }
-.row > div:nth-child(2) { animation-delay: 0.2s; }
-.row > div:nth-child(3) { animation-delay: 0.3s; }
-.row > div:nth-child(4) { animation-delay: 0.4s; }
-
-/* Медиа запросы */
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-    margin: 1rem;
-  }
-  
-  .crypto-card {
-    margin-bottom: 1rem;
-  }
-  
-  h1 {
-    font-size: 2rem;
-  }
+/* Стили для графика */
+#priceChart {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1rem;
 }
