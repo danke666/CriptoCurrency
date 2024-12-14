@@ -19,21 +19,21 @@ def price_history(cryptocurrency):
 @app.route("/api/save-conversion", methods=['POST'])
 def save_conversion():
     data = request.get_json()
-    app.logger.debug(f"Received conversion data: {data}")
+    app.logger.debug(f"Получены данные конвертации: {data}")
     if not data:
-        app.logger.error("No JSON data received")
-        return jsonify({"status": "fail", "message": "No data provided"}), 400
+        app.logger.error("JSON данные не получены")
+        return jsonify({"status": "fail", "message": "Данные не предоставлены"}), 400
     required_fields = ['cryptocurrency', 'amount', 'currency', 'converted_amount']
     if not all(field in data for field in required_fields):
-        app.logger.error("Missing fields in data")
-        return jsonify({"status": "fail", "message": "Missing fields"}), 400
+        app.logger.error("Отсутствуют обязательные поля")
+        return jsonify({"status": "fail", "message": "Отсутствуют обязательные поля"}), 400
     try:
         insert_conversion(data['cryptocurrency'], data['amount'], data['currency'], data['converted_amount'])
-        app.logger.debug("Conversion data inserted successfully")
+        app.logger.debug("Данные конвертации успешно сохранены")
         return jsonify({"status": "success"}), 200
     except Exception as e:
-        app.logger.error(f"Error saving conversion: {e}")
-        return jsonify({"status": "fail", "message": "Error saving data"}), 500
+        app.logger.error(f"Ошибка при сохранении данных: {e}")
+        return jsonify({"status": "fail", "message": "Ошибка при сохранении данных"}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
