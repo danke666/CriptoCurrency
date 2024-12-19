@@ -8,7 +8,7 @@ def fetch_and_store_prices():
 
         for crypto, prices in data.items():
             insert_price(crypto, prices['usd'], prices['eur'])
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         print(f"Ошибка при обновлении данных: {e}")
 
 if __name__ == "__main__":

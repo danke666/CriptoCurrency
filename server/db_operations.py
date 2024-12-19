@@ -1,6 +1,5 @@
-import sqlite3
-from datetime import datetime
 import logging
+import sqlite3
 
 DB_PATH = "db/database.sqlite"
 
@@ -48,7 +47,7 @@ def insert_price(cryptocurrency, price_usd, price_eur):
 
         conn.commit()
     except sqlite3.Error as e:
-        logging.error(f"Ошибка при вставке данных: {e}")
+                logging.error("Ошибка при вставке данных: %s", e)
     finally:
         conn.close()
 
@@ -81,17 +80,14 @@ def insert_conversion(cryptocurrency, amount, currency, converted_amount):
     try:
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
-
         cursor.execute('''
-        INSERT INTO conversions (cryptocurrency, amount, currency, converted_amount)
-        VALUES (?, ?, ?, ?)
+            INSERT INTO conversions (cryptocurrency, amount, currency, converted_amount)
+            VALUES (?, ?, ?, ?)
         ''', (cryptocurrency, amount, currency, converted_amount))
-
         conn.commit()
-    except sqlite3.Error as e:
-        logging.error(f"Ошибка при вставке данных: {e}")
-    finally:
         conn.close()
+    except Exception as e:
+        logging.error(f"Error inserting conversion: {e}")
 
 # Создание таблиц при запуске модуля
 create_tables()

@@ -36,7 +36,7 @@ async function handleConversion(event) {
 
     resultDiv.innerHTML = `<p class="text-success">${amount} ${cryptoType.toUpperCase()} = ${convertedAmount} ${currency.toUpperCase()}</p>`;
 
-    // Сохранение данных о конвертации в базу данных
+    // Save conversion data to the database
     const response = await fetch('/api/save-conversion', {
       method: 'POST',
       headers: {
